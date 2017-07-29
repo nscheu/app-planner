@@ -1,8 +1,9 @@
-import { Plan } from './plan';
+import { Plan } from './plan-model';
 
 export const PLANS: Plan[] = [
   {
   user_id: 1999991,
+    name: "Twisty",
   username: 'handleBars',
   apps: [
     {   title: 'SampleTitle',
@@ -38,3 +39,4 @@ export const PLANS: Plan[] = [
     } ]
   }
 ];
+

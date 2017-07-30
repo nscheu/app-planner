@@ -1,16 +1,38 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { Plan, Applications, AppComponent, ComponentTutorial } from './plan-model';
 
 @Component({
   selector: 'app-plan-detail',
-  templateUrl: './plan-detail.component.html',
-  template: `<h2>Hero Detail</h2>
-  <h3><i>Just a FormControl</i></h3>
-<label class="center-block">Name:
-<input class="form-control" [formControl]="name">
-  </label>`
+  templateUrl: './plan-detail.component.html'
+
 })
 
+
 export class PlanDetailComponent {
-  name = new FormControl();
+  planForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.createForm();
+  }
+
+  createForm() {
+    this.planForm = this.fb.group({ // <-- the parent FormGroup
+      name: ['', Validators.required ],
+      username: ['', Validators.required ],
+      applications: this.fb.group({ // <-- the child FormGroup
+        title: '',
+        components: this.fb.group({ // <-- the child FormGroup
+          title: '',
+          description: '',
+          url: '',
+          componentTutorials: this.fb.group({ // <-- the child FormGroup
+            title: '',
+            url: ''
+          })
+        })
+      })
+    });
+  }
 }

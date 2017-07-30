@@ -2,10 +2,10 @@ export class Plan {
   user_id: number;
   name: string;
   username: string;
-  apps: Apps[];
+  applications: Applications[];
 }
 
-export class Apps {
+export class Applications {
   title: string;
   components: AppComponent[];
 }
@@ -21,3 +21,5 @@ export class ComponentTutorial {
   title: string;
   url: string;
 }
+
+export const states = ['CA', 'MD', 'OH', 'VA'];

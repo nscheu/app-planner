@@ -1,6 +1,6 @@
 import { Plan } from './plan-model';
 
-export const PLANS: Plan[] = [
+export const PLANDATA: Plan[] = [
   {
     user_id: 1999991,
     name: 'Twisty',

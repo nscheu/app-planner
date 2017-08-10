@@ -12,18 +12,20 @@
     </label>
   </div>
 
-  <p>Form value: {{ planForm.get('name').value | json }}</p>
-  <p>Form status: {{ planForm.get('username').value | json }}</p>
-
-
-<div formGroupName="applications" class="well well-lg">
-  <h4>Applications</h4>
-  <div class="form-group">
-    <label class="center-block">Title:
-      <input class="form-control" formControlName="title">
-    </label>
+  <div formArrayName="applications" class="well well-lg">
+    <div *ngFor="let application of applications.controls; let i=index" [formGroupName]="i" >
+      <!-- The repeated address template -->
+      <h4>Applications</h4>
+      <div class="form-group">
+        <label class="center-block">Title:
+          <input class="form-control" formControlName="title">
+        </label>
+      </div>
+    </div>
   </div>
-</div>
+
+
+
 <p>App title value: {{ planForm.get('applications.title').value}}</p>
 
   <!--
@@ -67,4 +69,5 @@
 
 </form>
 
-
+<p>Form value: {{ planForm.value | json }}</p>
+<p>Form status: {{ planForm.status | json }}</p>

@@ -2,10 +2,10 @@ export class Plan {
   user_id: number;
   name: string;
   username: string;
-  applications: Applications[];
+  applications: Application[];
 }
 
-export class Applications {
+export class Application {
   title: string;
   components: AppComponent[];
 }

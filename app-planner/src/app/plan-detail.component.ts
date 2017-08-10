@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Plan, Applications, AppComponent, ComponentTutorial } from './plan-model';
+import { Plan, Application, AppComponent, ComponentTutorial } from './plan-model';
 
 @Component({
   selector: 'app-plan-detail',
@@ -21,18 +21,18 @@ export class PlanDetailComponent {
     this.planForm = this.fb.group({ // <-- the parent FormGroup
       name: ['', Validators.required ],
       username: ['', Validators.required ],
-      applications: this.fb.group({ // <-- the child FormGroup
-        title: '',
-        components: this.fb.group({ // <-- the child FormGroup
-          title: '',
-          description: '',
-          url: '',
-          componentTutorials: this.fb.group({ // <-- the child FormGroup
-            title: '',
-            url: ''
-          })
-        })
-      })
+      applications: this.fb.array([]),
     });
   }
+
+  setApplications(applications: Application[]) {
+    const applicationFGs = applications.map(application => this.fb.group(application));
+    const applicationFormArray = this.fb.array(applicationFGs);
+    this.planForm.setControl('applications', applicationFormArray);
+  }
+
+  addApp() {
+    // this.application.push(this.fb.group(new Application()));
+  }
 }
+
